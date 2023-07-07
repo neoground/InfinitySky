@@ -1,0 +1,10 @@
+[Unit]
+Description=Runs camera.py every 5 minutes
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=5min
+Unit=infinitysky-camera.service
+
+[Install]
+WantedBy=timers.target

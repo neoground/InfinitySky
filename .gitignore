@@ -1,0 +1,6 @@
+.idea
+www/archive
+www/keograms
+www/timelapses
+www/*.jpg
+venv

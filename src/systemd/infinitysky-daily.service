@@ -1,0 +1,7 @@
+[Unit]
+Description=InfinitySky Daily Processing Service
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/infinitysky/src/daily.py
+User=infinitysky
+Group=infinitysky

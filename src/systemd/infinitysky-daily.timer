@@ -1,0 +1,9 @@
+[Unit]
+Description=Runs daily.py every night
+
+[Timer]
+OnCalendar=*-*-* 00:05:00
+Unit=infinitysky-daily.service
+
+[Install]
+WantedBy=timers.target
