@@ -39,9 +39,9 @@ Plus, we have an impressive line of features in the works:
   nights better!
 - And a lot more!
 
-InfinitySky is more than a sky camera; it's your personal observatory, weather station, and astronomy data center
-wrapped in one sleek package. It's not just for the lovers of space and weather; it's for teachers, researchers,
-photographers, and technologists who'd like a reliable, smart window to the sky.
+InfinitySky is more than a sky camera; it's your personal observatory and a great addition to your weather station
+or astronomy data center, wrapped in one sleek package. It's not just for the lovers of space and weather; 
+it's for teachers, researchers,  photographers, and technologists who'd like a reliable, smart window to the sky.
 
 Stay tuned for the upcoming features and improvements. We will update this readme regularly because the sky is not the
 limit for us! 🚀

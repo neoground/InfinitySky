@@ -1,6 +1,5 @@
 .idea
-www/archive
-www/keograms
-www/timelapses
-www/*.jpg
 venv
+www/data
+www/var/cache
+www/var/logs

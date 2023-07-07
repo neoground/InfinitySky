@@ -54,10 +54,13 @@ else
   sudo chmod +x /usr/local/bin/composer
 
 # Install Web UI
-
+cd /opt/infinitysky/www
+/usr/local/bin/composer install
+echo "Prod" > app/app.env
 
 # Adjust permissions
 chown -R infinitysky:infinitysky /opt/infinitysky
 
+echo "Installation complete!"
 
 exit 0
