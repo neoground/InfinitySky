@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }} | InfinitySky</title>
+
+    {# Favicons #}
+    <link href="{{ getAssetsUrl() }}/images/icons/favicon.png" rel="icon" type="image/png" sizes="16x16">
+
+    <link href="{{ getAssetsUrl() }}/images/icons/icon_32.png" rel="icon" type="image/png" sizes="32x32">
+    <link href="{{ getAssetsUrl() }}/images/icons/icon_48.png" rel="icon" type="image/png" sizes="48x48">
+
+    <link href="{{ getAssetsUrl() }}/images/icons/icon_180.png" rel="apple-touch-icon">
+    <link href="{{ getAssetsUrl() }}/images/icons/icon_76.png" rel="apple-touch-icon" sizes="76x76">
+    <link href="{{ getAssetsUrl() }}/images/icons/icon_120.png" rel="apple-touch-icon" sizes="120x120">
+    <link href="{{ getAssetsUrl() }}/images/icons/icon_152.png" rel="apple-touch-icon" sizes="152x152">
+
+    <link href="{{ getAssetsUrl() }}/images/icons/icon_192.png" rel="icon" sizes="192x192">
+    <link href="{{ getAssetsUrl() }}/images/icons/icon_128.png" rel="icon" sizes="128x128">
+
+    <link rel="stylesheet" href="{{ getAssetsUrl() }}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ getAssetsUrl() }}/css/style.css">
+    {% block css %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="{{ getAssetsUrl() }}/images/icons/icon_128.png" alt="InfinitySky Logo"
+                 class="rounded me-3" style="max-height: 2rem; width: auto" />
+            InfinitySky</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% include "_base/nav.twig" %}
+        </div>
+    </div>
+</nav>
+
+{% block content %}{% endblock %}
+
+<script src="{{ getAssetsUrl() }}/js/bootstrap.bundle.min.js"></script>
+<script src="{{ getAssetsUrl() }}/js/main.js"></script>
+{% block js %}{% endblock %}
+</body>
+</html>

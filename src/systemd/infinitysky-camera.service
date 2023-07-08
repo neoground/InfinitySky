@@ -1,7 +1,0 @@
-[Unit]
-Description=InfinitySky Camera Service
-
-[Service]
-ExecStart=/usr/bin/python3 /opt/infinitysky/src/camera.py
-User=infinitysky
-Group=infinitysky

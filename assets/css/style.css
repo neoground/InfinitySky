@@ -1,0 +1,31 @@
+/*
+ * Custom CSS
+ */
+
+:root {
+    --bs-body-bg: var(--bs-gray-800);
+    --bs-body-color: #fafafa;
+    --bs-secondary-color: rgba(155, 159, 168, 0.75);
+    --bs-tertiary-bg: var(--bs-gray-700);
+}
+
+.card {
+    --bs-card-bg: var(--bs-gray-700);
+}
+
+.table {
+    --bs-table-bg: inherit;
+}
+
+.btn-primary {
+    --bs-btn-bg: #a63171;
+    --bs-btn-hover-bg: #e1469b;
+    --bs-btn-hover-border-color: #982e68;
+    --bs-btn-border-color: #982e68;
+}
+
+.bg-translucent {
+    background: rgba(52, 58, 64, .75);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}

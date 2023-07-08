@@ -1,0 +1,16 @@
+{
+  "name": "neoground/infinitysky",
+  "description": "",
+  "license": "",
+  "version": "1.0",
+  "require": {
+    "php": ">=8.1",
+    "neoground/charm": "^3.1",
+    "symfony/process": "^6.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  }
+}

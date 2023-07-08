@@ -1,0 +1,23 @@
+# +-------------------------------------------------------------------------+
+# | en/main.yaml - The Galactic Compendium of English Translations          |
+# +-------------------------------------------------------------------------+
+# |                                                                         |
+# | In this interstellar lexicon, you will store all the translations you   |
+# | need, including variables, for your Charm Framework projects.           |
+# | Access the translations as you would with any other config value in     |
+# | your app:                                                               |
+# | C::Formatter()->translate('main:demo.hello', ['name' => 'Duke']);       |
+# | Will print "Hey Duke" if the config is "demo: hello: Hey {name}"        |
+# |                                                                         |
+# | Think of this file as the universal translator, bridging the gap        |
+# | between different worlds and cultures, bringing unity to your           |
+# | web applications through the power of language.                         |
+# |                                                                         |
+# | For more information on translations, see the docs:                     |
+# |                                                                         |
+# | https://neoground.com/docs/charm/core.configuration#translations        |
+# |                                                                         |
+# +-------------------------------------------------------------------------+
+
+demo:
+  hello: Hey {name}

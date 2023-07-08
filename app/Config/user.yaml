@@ -1,0 +1,20 @@
+# +-------------------------------------------------------------------------+
+# | user.yaml - The Holocron of Personalized Configuration                  |
+# +-------------------------------------------------------------------------+
+# |                                                                         |
+# | In this sacred vault, you will store user and application-specific      |
+# | configurations for your Charm Framework projects. These settings will   |
+# | guide your project's destiny, shaping it to meet the unique needs of    |
+# | the user or the application.                                            |
+# |                                                                         |
+# | Think of this file as the kyber crystal powering your lightsaber,       |
+# | focusing the Force within your web applications, making them as         |
+# | unique and powerful as the Jedi who wields it.                          |
+# |                                                                         |
+# | For more information on config files, see the docs:                     |
+# |                                                                         |
+# | https://neoground.com/docs/charm/core.configuration                     |
+# |                                                                         |
+# +-------------------------------------------------------------------------+
+
+

@@ -1,0 +1,28 @@
+# +-------------------------------------------------------------------------+
+# | modules.yaml - The Galactic Registry of Intergalactic Modules           |
+# +-------------------------------------------------------------------------+
+# |                                                                         |
+# | In this celestial archive, you will define all the additional modules   |
+# | that should be loaded alongside the core of your Charm Framework        |
+# | projects. Just provide the class name of the module binding with its    |
+# | full namespace.                                                         |
+# |                                                                         |
+# | Think of this file as the holocron that unifies the knowledge of the    |
+# | galaxy, connecting your projects with the power of the Force, allowing  |
+# | you to create web applications that are truly out of this world.        |
+# |                                                                         |
+# | For more information on config files, see the docs:                     |
+# |                                                                         |
+# | https://neoground.com/docs/charm/core.configuration                     |
+# |                                                                         |
+# +-------------------------------------------------------------------------+
+
+modules:
+  # Adds debug bar to views when debug mode is enabled
+  - \Charm\DebugBar\DebugBar
+  # General data exporter to csv, xlsx, ...
+  - \Charm\DataExporter\DataExporter
+  # Cron system
+  - \Charm\Crown\Crown
+  # Queue system
+  - \Charm\Barbequeue\Queue

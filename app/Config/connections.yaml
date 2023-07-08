@@ -1,0 +1,78 @@
+# +-------------------------------------------------------------------------+
+# | connections.yaml - The Galactic Commlink for Your Intergalactic Contact |
+# +-------------------------------------------------------------------------+
+# |                                                                         |
+# | In this universal star chart, you will define all connections to the    |
+# | databases and other external sources and systems that span the galaxy,  |
+# | such as Redis or SMTP. Consider this file the master holocron that      |
+# | holds the secrets to establishing contact with the vast array of allies |
+# | and resources you'll need throughout your web development odyssey.      |
+# |                                                                         |
+# | Harness the power of the Force and forge connections that will stand    |
+# | the test of time, enabling you to bring balance and harmony to your     |
+# | projects across the galaxy.                                             |
+# |                                                                         |
+# | For more information on config files, see the docs:                     |
+# |                                                                         |
+# | https://neoground.com/docs/charm/core.configuration                     |
+# |                                                                         |
+# +-------------------------------------------------------------------------+
+
+# ---------------------------------------------------------------------------
+# :: SQL Database
+# ---------------------------------------------------------------------------
+database:
+  # Should the database connection be enabled?
+  enabled:   false
+  # Type of database
+  driver:    mysql
+  # Authentication
+  host:      'localhost'
+  username:  ''
+  password:  ''
+  # Database
+  database:  'infsky'
+  prefix:   'infsky_'
+  charset:   utf8mb4
+  collation: utf8mb4_unicode_ci
+  caching:   true
+
+# ---------------------------------------------------------------------------
+# :: Redis
+# ---------------------------------------------------------------------------
+redis:
+  # Should redis be enabled?
+  enabled: false
+  # Driver to use: phpredis (only used if available), predis
+  driver: phpredis
+  scheme: tcp
+  # Authentication
+  host: '127.0.0.1'
+  port: 6379
+  password: ''
+  # Prefix for all stored keys
+  prefix:   'infsky_'
+  # Persistent connection
+  persistent: true
+
+# ---------------------------------------------------------------------------
+# :: Email SMTP / API
+# ---------------------------------------------------------------------------
+emails:
+  default:
+    driver: Smtp
+    host: example.com
+    port: 587
+    auth: true
+    authtype: login
+    username: info@example.com
+    password: 'S3cr3tP455w0rD!'
+    usetls: true
+    usessl: false
+    trustall: false
+    fromname: 'Charm Framework'
+    frommail: info@example.com
+  local:
+    type:     sendmail
+    fromname: 'Charm Framework'
+    frommail: 'info@example.com'

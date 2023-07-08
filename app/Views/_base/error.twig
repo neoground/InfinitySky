@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error {{ statuscode }}</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(45deg, #000, #1a1a1a);
+            color: #fff;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", "Segoe UI", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .text-container {
+            border: .33rem solid #17a2b8;
+            border-radius: 1rem;
+            padding: 3rem 4rem;
+            text-align: center;
+            max-width: 600px;
+
+            background: rgba(16, 16, 16, 0.1);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0 0 1rem 0;
+            color: #17a2b8;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #ddd;
+            line-height: 1.75;
+        }
+
+        .button {
+            text-decoration: none;
+            background: #f7e11e;
+            color: #000;
+            padding: .75rem 1.75rem;
+            border-radius: 1rem;
+            margin: 1rem 0 0 0;
+            display: inline-block;
+            font-size: 1.2rem;
+        }
+
+        .stars-container {
+            position: relative;
+            background-color: #111;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        span.star {
+            position: absolute;
+            pointer-events: none;
+            background-image: linear-gradient(90deg, #1b26ff, #09c6fe);
+            animation: animate 5s ease-out infinite;
+            border-radius: 50%;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: scale(0) translateY(0);
+                filter: hue-rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) translateY(-500%);
+                filter: hue-rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+    {{ charm.head|raw }}
+</head>
+<body>
+<div class="stars-container">
+    <div class="text-container">
+        <h1>Error {{ statuscode }}</h1>
+        <p>
+            {{ error_message }}
+        </p>
+        <button class="button" onClick="history.back()">Go back</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function starryNight() {
+        const star = document.createElement('span');
+        const cont = document.querySelector('.stars-container');
+        let value = Math.random() * 5;
+
+        star.classList.add('star')
+        star.style.width = value + 'px';
+        star.style.height = value + 'px';
+
+        star.style.top = Math.random() * innerHeight + 'px';
+        star.style.left = Math.random() * innerWidth + 'px';
+
+        cont.appendChild(star);
+
+        setTimeout(() => {
+            star.remove();
+        }, 15000);
+    }
+
+    setInterval(starryNight, 75);
+</script>
+{{ charm.body|raw }}
+</body>
+</html>

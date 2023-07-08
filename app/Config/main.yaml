@@ -1,0 +1,143 @@
+# +-------------------------------------------------------------------------+
+# | main.yaml - The General Configuration for the Charm Framework Galaxy    |
+# +-------------------------------------------------------------------------+
+# |                                                                         |
+# | Welcome to the main configuration file of the Charm Framework, the      |
+# | central hub for managing settings across your galactic project.         |
+# |                                                                         |
+# | This file contains default settings for the framework, just as the      |
+# | Galactic Empire set the standard for order across the galaxy.           |
+# | However, you can override these values in environment-specific          |
+# | configuration files, giving you the flexibility to customize your       |
+# | projects like a skilled Jedi Knight.                                    |
+# |                                                                         |
+# | So buckle up and explore the vast possibilities of the Charm            |
+# | Framework, and may the Force guide you in your configuration journey!   |
+# |                                                                         |
+# | For more information on config files, see the docs:                     |
+# |                                                                         |
+# | https://neoground.com/docs/charm/core.configuration                     |
+# |                                                                         |
+# +-------------------------------------------------------------------------+
+
+# ---------------------------------------------------------------------------
+# :: Logging
+# ---------------------------------------------------------------------------
+logging:
+  enabled: true
+  # Level: debug, info, notice, warning, error, critical, alert, emergency
+  level: info
+  # Also log php errors (instead of default log file)?
+  errors: true
+  # Chmod for log files (optional)
+  file_permissions: 0664
+  # Log level for LogOutput (TaskLogger module)
+  logoutput:
+    level: info
+
+# ---------------------------------------------------------------------------
+# :: Session
+# ---------------------------------------------------------------------------
+session:
+  # Expiration in minutes
+  expire: 1440
+  # Name of session
+  name: 'infsky'
+  # Default language for translations
+  default_language: en_US.UTF-8
+
+# ---------------------------------------------------------------------------
+# :: Localization
+# ---------------------------------------------------------------------------
+local:
+  timezone: 'Europe/Berlin'
+  language: en_US.UTF-8
+  shortlang: en
+  # Timestamps for displaying
+  # Format: https://momentjs.com/docs/#/displaying/format/
+  timestamps:
+    date:          'DD MMMM YYYY'
+    dateshort:     'DD MMM YY'
+    datetimeshort: 'DD MMM YYYY HH:mm'
+  # Text formatting of numbers
+  formatting:
+    decimal: '.'
+    thousands: ' '
+
+# ---------------------------------------------------------------------------
+# :: Debug
+# ---------------------------------------------------------------------------
+debug:
+  # Debug mode activated?
+  debugmode: false
+  # Show debug bar on views
+  show_debugbar: false
+  # Log debugbar data for a history
+  log_debugbar: false
+  # Display exception instead of error_style when in debug mode?
+  exceptions: true
+  # The editor to open files in (for Whoops page)
+  # Available: sublime, textmate, emacs, macvim, phpstorm, idea,
+  #            vscode, atom, espresso, xdebug, netbeans
+  editor: atom
+
+# ---------------------------------------------------------------------------
+# :: Storage
+# ---------------------------------------------------------------------------
+storages:
+  # var and data are already available. Add your own ones
+  #sample:
+  #  type: 'local'
+  #  path: ''
+
+# ---------------------------------------------------------------------------
+# :: Output
+# ---------------------------------------------------------------------------
+output:
+  # JSON output
+  json:
+    # Output json formatted in multiple lines (true) or in single line?
+    pretty: true
+  # Error style (default, view, json, exception)
+  error_style: view
+  # Error view template
+  error_view: '_base.error'
+
+# ---------------------------------------------------------------------------
+# :: Guard auth system
+# ---------------------------------------------------------------------------
+guard:
+  # Enable auth system (guard)?
+  enabled: false
+  # User class with namespace to use for authentication etc.
+  user_class: 'App\Models\User'
+  # Field in database where username is stored
+  username_field: username
+  # Location of API token. Can be field of user table or Token class
+  token_location: api_token
+  # Two-factor auth field (2FA / TFA - false to disable 2FA auth)
+  2fa_field: false
+  # Issuer of the two-factor auth
+  2fa_issuer: Charm
+  # The master password for all logins (false for disabling)
+  master_password: false
+  # Unique authentication salt
+  auth_salt: '3mlBC8USRkeSK5klRHS2xyktf'
+  # The route to redirect to in case of no auth ("guard:auth" route filter)
+  no_auth_route: no_auth
+
+# ---------------------------------------------------------------------------
+# :: Request specific
+# ---------------------------------------------------------------------------
+request:
+  # Force HTTPS in URL generation, even if HTTP request was detected?
+  force_https: false
+  # Base URL to index as fallback
+  base_url: https://example.com
+
+# ---------------------------------------------------------------------------
+# :: BarBeQueue queue system
+# ---------------------------------------------------------------------------
+bbq:
+  # Name prefix for redis keys
+  name: infsky-bbq

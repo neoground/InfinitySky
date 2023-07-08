@@ -33,18 +33,6 @@ else
     sudo usermod -a -G audio infinitysky
 fi
 
-# Systemd timers
-sudo ln -sf /opt/infinitysky/src/systemd/infinitysky-camera.service /etc/systemd/system/infinitysky-camera.service
-sudo ln -sf /opt/infinitysky/src/systemd/infinitysky-camera.timer /etc/systemd/system/infinitysky-camera.timer
-sudo ln -sf /opt/infinitysky/src/systemd/infinitysky-daily.service /etc/systemd/system/infinitysky-daily.service
-sudo ln -sf /opt/infinitysky/src/systemd/infinitysky-daily.timer /etc/systemd/system/infinitysky-daily.timer
-
-sudo systemctl enable infinitysky-camera.timer
-sudo systemctl start infinitysky-camera.timer
-
-sudo systemctl enable infinitysky-daily.timer
-sudo systemctl start infinitysky-daily.timer
-
 # Install PHP 8.1
 
 # Check if PHP is installed
@@ -103,10 +91,23 @@ else
 # Install Web UI
 cd /opt/infinitysky/www
 /usr/local/bin/composer install
-echo "Prod" > app/app.env
+echo "Local" > app/app.env
 
 # Adjust permissions
 chown -R infinitysky:infinitysky /opt/infinitysky
+
+# Systemd timers
+sudo ln -sf /opt/infinitysky/var/systemd/infinitysky-cron.service /etc/systemd/system/infinitysky-cron.service
+sudo ln -sf /opt/infinitysky/var/systemd/infinitysky-cron.timer /etc/systemd/system/infinitysky-cron.timer
+
+sudo systemctl daemon-reload
+sudo systemctl enable infinitysky-cron.timer
+
+echo " "
+echo "InfinitySky timer has been added to systemd which starts automatically next boot."
+echo "When you are done configuring InfinitySky you can start the system via:"
+echo "> sudo systemctl start infinitysky-cron.timer"
+echo " "
 
 echo "Installation complete!"
 

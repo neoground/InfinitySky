@@ -1,0 +1,7 @@
+[Unit]
+Description=InfinitySky Cron Job (running all daily tasks)
+
+[Service]
+ExecStart=/usr/bin/php /opt/infinitysky/bob.php cron:run
+User=infinitysky
+Group=infinitysky
