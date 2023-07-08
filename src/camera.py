@@ -32,10 +32,10 @@ archivedir = conf.get('camera.archive_dir')
 # Current time
 now = datetime.now().astimezone(pytz.timezone(city.timezone))
 
-# Calculate civil twilight start / end
+# Calculate "nearly" astronomical twilight start / end (best values found by trial and error)
 s = sun(city.observer, date=now)
-tae_morning = time_at_elevation(city.observer, date=now, elevation=-6, direction=SunDirection.RISING)
-tae_evening = time_at_elevation(city.observer, date=now, elevation=-6, direction=SunDirection.SETTING)
+tae_morning = time_at_elevation(city.observer, date=now, elevation=-10, direction=SunDirection.RISING)
+tae_evening = time_at_elevation(city.observer, date=now, elevation=-10, direction=SunDirection.SETTING)
 
 # Check the current time and adjust the settings accordingly
 # Exposure in ms

@@ -63,7 +63,7 @@ Missing packages will be installed automatically in the installation script.
 Software requirements:
 
 - Python 3.9 or higher
-- PHP 8.0 or higher
+- PHP 8.2 or higher
 - libcamera
 - web server, ideally nginx
 - ffmpeg
@@ -108,7 +108,7 @@ server {
    }
    location ~ \.php$ {
        fastcgi_split_path_info ^(.+\.php)(/.+)$;
-       fastcgi_pass unix:/var/run/php8.0-fpm.sock;
+       fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
        fastcgi_index index.php;
        include fastcgi.conf;
    }

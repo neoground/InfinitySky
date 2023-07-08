@@ -10,7 +10,7 @@
 # Requirements
 echo "Installing missing packages..."
 sudo apt update
-sudo apt install python3 nginx-full ffmpeg imagemagick php8.0 php8.0-fpm php8.0-mbstring php8.0-cli
+sudo apt install python3 nginx-full ffmpeg imagemagick
 pip3 install astral pytz
 
 # Set config
@@ -44,6 +44,53 @@ sudo systemctl start infinitysky-camera.timer
 
 sudo systemctl enable infinitysky-daily.timer
 sudo systemctl start infinitysky-daily.timer
+
+# Install PHP 8.1
+
+# Check if PHP is installed
+if ! command -v php >/dev/null 2>&1; then
+  echo "PHP is not installed. Attempting to install..."
+
+  # Update the package list
+  sudo apt-get update
+
+  # Check if PHP 8.2 is available
+  if apt-cache pkgnames | grep -q "^php8.2-common$"; then
+    echo "PHP 8.2 is available. Installing..."
+    sudo apt-get install -y php8.2 php8.2-cli php8.2-common php8.2-fpm php8.2-gd php8.2-imagick php8.2-opcache php8.2-mbstring
+  else
+    echo "PHP 8.2 is not available. Adding Sury PHP repository..."
+
+    # Add Sury PHP repository
+    sudo wget -qO /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
+
+    # Update the package list again
+    sudo apt-get update
+
+    # Try to install PHP 8.2 again
+    if apt-cache pkgnames | grep -q "^php8.2-common$"; then
+      echo "PHP 8.2 is now available. Installing..."
+      sudo apt-get install -y php8.2 php8.2-cli php8.2-common php8.2-fpm php8.2-gd php8.2-imagick php8.2-opcache php8.2-mbstring
+    else
+      echo "PHP 8.2 is still not available. Please check your package sources or manually install PHP."
+      exit 1
+    fi
+  fi
+else
+  echo "PHP is already installed."
+fi
+
+# Validate the PHP version
+php_version=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
+
+# Check if PHP version is at least 8.1
+if printf '%s\n' "8.1" "$php_version" | sort -V -C; then
+  echo "PHP version $php_version detected."
+else
+  echo "PHP version is $php_version, which is less than 8.1!"
+  exit 1
+fi
 
 # Install composer
 if [ -f "/usr/local/bin/composer" ]; then
