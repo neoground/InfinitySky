@@ -41,10 +41,10 @@ class CamService
         $image = new SimpleImage();
         $image->fromFile($tmpfile)
             ->rotate(C::Config()->get('camera:camera.rotate'))
-            ->crop(C::Config()->get('camera:camera.crop.top_left_x'),
-                   C::Config()->get('camera:camera.crop.top_left_y'),
-                   C::Config()->get('camera:camera.crop.bottom_right_x'),
-                   C::Config()->get('camera:camera.crop.bottom_right_y'))
+            ->crop((float) C::Config()->get('camera:camera.crop.top_left_x'),
+                (float) C::Config()->get('camera:camera.crop.top_left_y'),
+                (float) C::Config()->get('camera:camera.crop.bottom_right_x'),
+                (float) C::Config()->get('camera:camera.crop.bottom_right_y'))
             ->toFile($current_file, 'image/jpeg', 93);
 
         C::Storage()->deleteFileIfExists($tmpfile);
