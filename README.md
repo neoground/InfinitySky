@@ -56,14 +56,24 @@ Welcome aboard the InfinitySky journey! Follow the steps below to install and co
 
 ### Step 1: Prepare Your Environment
 
-Ensure you have a Raspberry Pi OS Lite or a minimal Debian OS installed.
+Ensure you have a Raspberry Pi OS Lite or a minimal Debian OS installed. We're working on supporting all major
+linux platforms soon.
+
+Currently, this is only tested on a Raspberry Pi 3B+ with OS Lite, based on Debian 11 bullseye.
 
 Missing packages will be installed automatically in the installation script.
 
 Software requirements:
 
 - Python 3.9 or higher
-- PHP 8.2 or higher
+- PHP 8.2, with extensions:
+  - cli
+  - fpm
+  - gd
+  - imagick
+  - opcache 
+  - mbstring
+  - xml
 - libcamera
 - web server, ideally nginx
 - ffmpeg
@@ -82,6 +92,13 @@ Additionally, these python packages are required and need to be installed via `p
 Clone the InfinitySky repository to the `/opt/infinitysky` directory:
 
 ```bash
+# First create the destination dir
+sudo mkdir /opt/infinitysky 
+
+# Then add permission to your current user for installation, adjust user and group
+sudo chown user:group /opt/infinitysky
+
+# Then clone the repository
 git clone https://github.com/neoground/InfinitySky.git /opt/infinitysky
 ```
 
@@ -100,7 +117,7 @@ Add the nginx config of InfinitySky to your main nginx config (typically in `/et
 ```
 server {
    ...
-   include /opt/infinitysky/config/nginx.conf;
+   include /opt/infinitysky/nginx.conf;
    
    # If you haven't configured nginx for PHP yet, you may also need to add this:
    location / {

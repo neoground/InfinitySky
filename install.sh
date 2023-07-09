@@ -13,16 +13,6 @@ sudo apt update
 sudo apt install python3 nginx-full ffmpeg imagemagick
 pip3 install astral pytz
 
-# Set config
-MAINCONF="/opt/infinitysky/config/main.json"
-
-if [ -f "$MAINCONF" ]; then
-  echo "Main config file already existing. Please check upgrade guide for changed values."
-else
-  echo "Creating main config file at config/main.json..."
-  cp /opt/infinitysky/config/main_sample.json $MAINCONF
-fi
-
 # Create system user
 if id "$1" >/dev/null 2>&1; then
     echo "User infinitysky already exists."
@@ -45,7 +35,7 @@ if ! command -v php >/dev/null 2>&1; then
   # Check if PHP 8.2 is available
   if apt-cache pkgnames | grep -q "^php8.2-common$"; then
     echo "PHP 8.2 is available. Installing..."
-    sudo apt-get install -y php8.2 php8.2-cli php8.2-common php8.2-fpm php8.2-gd php8.2-imagick php8.2-opcache php8.2-mbstring
+    sudo apt-get install -y php8.2 php8.2-cli php8.2-common php8.2-fpm php8.2-gd php8.2-imagick php8.2-opcache php8.2-mbstring php8.2-xml
   else
     echo "PHP 8.2 is not available. Adding Sury PHP repository..."
 
@@ -59,7 +49,7 @@ if ! command -v php >/dev/null 2>&1; then
     # Try to install PHP 8.2 again
     if apt-cache pkgnames | grep -q "^php8.2-common$"; then
       echo "PHP 8.2 is now available. Installing..."
-      sudo apt-get install -y php8.2 php8.2-cli php8.2-common php8.2-fpm php8.2-gd php8.2-imagick php8.2-opcache php8.2-mbstring
+      sudo apt-get install -y php8.2 php8.2-cli php8.2-common php8.2-fpm php8.2-gd php8.2-imagick php8.2-opcache php8.2-mbstring php8.2-xml
     else
       echo "PHP 8.2 is still not available. Please check your package sources or manually install PHP."
       exit 1
@@ -70,10 +60,10 @@ else
 fi
 
 # Validate the PHP version
-php_version=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
+php_version=$(php -r "echo floatval(PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION) >= 8.2 ? '1' : '0';")
 
-# Check if PHP version is at least 8.1
-if printf '%s\n' "8.1" "$php_version" | sort -V -C; then
+# Check if PHP version is at least 8.2
+if [ "$php_version" == "1" ]; then
   echo "PHP version $php_version detected."
 else
   echo "PHP version is $php_version, which is less than 8.1!"
@@ -90,6 +80,7 @@ else
 
 # Install Web UI
 cd /opt/infinitysky/www
+mkdir data var/cache var/logs
 /usr/local/bin/composer install
 echo "Local" > app/app.env
 

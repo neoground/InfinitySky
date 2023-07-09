@@ -6,6 +6,7 @@
 namespace App\System;
 
 use Charm\Vivid\Base\BasicViewExtension;
+use Charm\Vivid\C;
 
 /**
  * Class ViewExtension
@@ -17,18 +18,18 @@ use Charm\Vivid\Base\BasicViewExtension;
 class ViewExtension extends BasicViewExtension
 {
     /**
-     * Get a random integer in a view (demo method)
+     * Get software version
      *
-     * Use it in a view as {{ getRandomInt(1, 10) }}
-     *
-     * @param int $min min number
-     * @param int $max max number
-     *
-     * @return int
+     * @return string
      */
-    public function getRandomInt($min, $max)
+    public function getVersion()
     {
-        return rand($min, $max);
+        return C::App()->getVersion();
+    }
+
+    public function getPhpVersion()
+    {
+        return PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION;
     }
 
 }

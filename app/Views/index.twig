@@ -81,6 +81,12 @@
     </section>
 
     <div class="container">
+        {% if getConfig('camera:enabled') %}
+            <div class="alert alert-success">Camera is working.</div>
+        {% else %}
+            <div class="alert alert-warning">Camera is disabled!</div>
+        {% endif %}
+
         {% for hour in hours %}
             <div class="row mb-3">
                 <div class="col-12 col-lg-2 mb-3 text-center">

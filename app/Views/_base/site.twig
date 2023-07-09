@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,6 +40,27 @@
 </nav>
 
 {% block content %}{% endblock %}
+
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="{{ getBaseUrl() }}" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                <img src="{{ getAssetsUrl() }}/images/icons/icon_128.png" alt="InfinitySky Logo"
+                     class="rounded me-3" style="max-height: 2rem; width: auto" />
+            </a>
+            <span class="mb-3 mb-md-0 text-body-secondary">
+                <a href="https://neoground.com/projects/infinitysky" target="_blank" rel="noopener" class="text-muted">InfinitySky</a>
+                v{{ getVersion() }} &bull; PHP {{ getPhpVersion() }}</span>
+        </div>
+
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3"><a class="text-body-secondary" href="https://neoground.com/docs/infinitysky/index"
+                                target="_blank" rel="noopener">Docs</a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="https://github.com/neoground/InfinitySky"
+                                target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+    </footer>
+</div>
 
 <script src="{{ getAssetsUrl() }}/js/bootstrap.bundle.min.js"></script>
 <script src="{{ getAssetsUrl() }}/js/main.js"></script>
