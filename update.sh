@@ -11,6 +11,7 @@ sudo -u www-data git stash
 sudo -u www-data git pull
 sudo -u www-data php bob.php cache:clear
 sudo -u www-data composer install
+sudo -u www-data chmod +x install.sh update.sh
 echo " "
 echo "Update complete. Enjoy the sky!"
 
