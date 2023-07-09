@@ -115,10 +115,13 @@
                 {% endfor %}
 
                 <div class="col-12 col-lg-2 mb-3 text-center d-flex justify-content-center align-items-center">
-                    <a href="#collapse-hour-{{ hour }}" data-bs-toggle="collapse" class="btn btn-primary">Details</a>
+                    <a href="#collapse-hour-{{ hour.hour }}" data-bs-toggle="collapse"
+                       class="btn btn-secondary d-flex justify-content-center align-items-center w-100 h-100">
+                        Details
+                    </a>
                 </div>
 
-                <div class="col-12 mb-5 collapse" id="collapse-hour-{{ hour }}">
+                <div class="col-12 mb-5 collapse" id="collapse-hour-{{ hour.hour }}">
                     <div class="row">
                         {% for m in all_minutes %}
                             <div class="col-6 col-md-3 col-lg-2 col-xl-1">
