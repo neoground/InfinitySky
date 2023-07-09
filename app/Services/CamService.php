@@ -178,6 +178,9 @@ class CamService
         $image = new SimpleImage();
         $image->fromFile($source)
             ->resize(
+                1,
+                C::Config()->get('camera:keogram.slice_height')
+            )->resize(
                 C::Config()->get('camera:keogram.slice_width'),
                 C::Config()->get('camera:keogram.slice_height')
             )->toFile($dest, 'image/jpeg', 90);
@@ -269,10 +272,12 @@ class CamService
 
         $ffmpeg = new Process([
             "ffmpeg", "-framerate", C::Config()->get('camera:timelapse.framerate'), "-pattern_type", "glob",
-            "-i", $archive_dir . DS . '*.jpg', "-s", "hd1080", "-c:v", "libx264", "-crf", "20", "-y",
+            "-i", $archive_dir . DS . '*.jpg', "-vf", "scale=" . C::Config()->get('camera:timelapse.width')
+            . ":" . C::Config()->get('camera:timelapse.height'), "-c:v", "libx264", "-crf", "20", "-y",
             "-pix_fmt", "yuv420p",
             $video_path
         ]);
+        $ffmpeg->setTimeout(600);
         $ffmpeg->run();
         return $ffmpeg->isSuccessful();
     }

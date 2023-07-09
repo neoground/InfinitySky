@@ -31,7 +31,7 @@ camera:
       exposure: auto
       gain: 1
     twilight:
-      exposure: 1000
+      exposure: auto
       gain: 2
     night:
       exposure: 6000
@@ -40,6 +40,8 @@ camera:
 # Timelapse configuration
 timelapse:
   framerate: 25
+  width: 1080
+  height: 1080
 
 # Keogram configuration
 keogram:
