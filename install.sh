@@ -14,14 +14,9 @@ sudo apt install python3 nginx-full ffmpeg imagemagick
 pip3 install astral pytz
 
 # Create system user
-if id "$1" >/dev/null 2>&1; then
-    echo "User infinitysky already exists."
-else
-    echo "Creating infinitysky user..."
-    sudo adduser --system --no-create-home --group infinitysky
-    sudo usermod -a -G video infinitysky
-    sudo usermod -a -G audio infinitysky
-fi
+echo "Adding www-data user to needed groups: video, audio"
+sudo usermod -a -G video www-data
+sudo usermod -a -G audio www-data
 
 # Install PHP 8.1
 
@@ -85,7 +80,7 @@ mkdir data var/cache var/logs
 echo "Local" > app/app.env
 
 # Adjust permissions
-chown -R infinitysky:infinitysky /opt/infinitysky
+chown -R www-data:www-data /opt/infinitysky
 
 # Systemd timers
 sudo ln -sf /opt/infinitysky/var/systemd/infinitysky-cron.service /etc/systemd/system/infinitysky-cron.service
