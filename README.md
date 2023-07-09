@@ -1,5 +1,7 @@
 # InfinitySky: Your All-Sky-Camera Project
 
+![Header Image](https://raw.githubusercontent.com/neoground/InfinitySky/main/assets/images/header_logo.jpg)
+
 Hello, Star Gazers, Cloud Watchers, and Tech Wizards! 🌟☁️💻
 
 Welcome to InfinitySky, where we bring the celestial dome to your homes with ease,
