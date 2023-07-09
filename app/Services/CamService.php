@@ -269,8 +269,9 @@ class CamService
 
         $ffmpeg = new Process([
             "ffmpeg", "-framerate", C::Config()->get('camera:timelapse.framerate'), "-pattern_type", "glob",
-            "-i", '"' . $archive_dir . DS . '*.jpg"', "-s", "hd1080", "-c:v", "libx264", "-crf", "20", "-y",
-            "-vf", '"format=yuv420p"', $video_path
+            "-i", $archive_dir . DS . '*.jpg', "-s", "hd1080", "-c:v", "libx264", "-crf", "20", "-y",
+            "-pix_fmt", "yuv420p",
+            $video_path
         ]);
         $ffmpeg->run();
         return $ffmpeg->isSuccessful();
