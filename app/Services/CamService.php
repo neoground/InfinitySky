@@ -268,8 +268,9 @@ class CamService
         C::Storage()->deleteFileIfExists($video_path);
 
         $ffmpeg = new Process([
-            "ffmpeg", "-framerate", C::Config()->get('camera:timelapse.framrate'), "-pattern_type", "glob",
-            "-i", "'" . $archive_dir . DS . "*.jpg'", "-c:v", "libx264", "-pix_fmt", "yuv420p", $video_path
+            "ffmpeg", "-framerate", C::Config()->get('camera:timelapse.framerate'), "-pattern_type", "glob",
+            "-i", "'" . $archive_dir . DS . "*.jpg'", "-s", "hd1080", "-c:v", "libx264", "-crf", "20", "-y",
+            "-vf", '"format=yuv420p"', $video_path
         ]);
         $ffmpeg->run();
         return $ffmpeg->isSuccessful();
