@@ -81,6 +81,7 @@ echo "Local" > app/app.env
 mkdir -p app/Config/Environments/Local
 
 # Adjust permissions
+chmod +x /opt/infinitysky/update.sh
 chown -R www-data:www-data /opt/infinitysky
 
 # Systemd timers

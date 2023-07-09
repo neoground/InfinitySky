@@ -62,6 +62,17 @@
     </footer>
 </div>
 
+{# Image Modal #}
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img id="modalImage" src="" class="img-fluid" alt="Image">
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="{{ getAssetsUrl() }}/js/bootstrap.bundle.min.js"></script>
 <script src="{{ getAssetsUrl() }}/js/main.js"></script>
 {% block js %}{% endblock %}

@@ -109,6 +109,7 @@ git clone https://github.com/neoground/InfinitySky.git /opt/infinitysky
 Run the installation script:
 
 ```bash
+chmod +x /opt/infinitysky/install.sh
 /opt/infinitysky/install.sh
 ```
 

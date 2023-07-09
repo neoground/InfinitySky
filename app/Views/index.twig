@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <a href="{{ current_file }}" class="gallery">
+                    <a href="{{ current_file }}" data-bs-toggle="modal" data-bs-target="#imageModal">
                         <img class="d-block mx-lg-auto img-fluid shadow-lg rounded mt-4" src="{{ current_file }}" alt="Latest photo" />
                     </a>
                     {% if current_data %}
@@ -90,9 +90,9 @@
     </section>
 
     <div class="container">
-        <h2 class="h1 fw-bold text-center mb-3">The last 24 hours</h2>
+        <h2 class="h1 fw-bold text-center mb-5">The last 24 hours</h2>
         {% for hour in hours %}
-            <div class="row my-5">
+            <div class="row my-3">
                 <div class="col-12 col-lg-2 mb-3 d-flex justify-content-center align-items-center">
                     <div class="display-3">{{ hour.hour }}</div>
                 </div>
@@ -101,7 +101,8 @@
                 <div class="col-3 col-lg-2 mb-3 text-center">
                     {% if hour['min_' ~ m] %}
                         <div class="card">
-                            <a href="{{ hour['min_' ~ m ~ '_full'] }}" class="gallery">
+                            <a href="{{ hour['min_' ~ m ~ '_full'] }}"
+                               data-bs-toggle="modal" data-bs-target="#imageModal">
                                 <img src="{{ hour['min_' ~ m] }}" class="card-img-top" alt="Photo" />
                             </a>
                             <div class="card-body text-center p-2">

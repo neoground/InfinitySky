@@ -53,7 +53,7 @@ class BasicController extends Controller
                 'hour' => $date->hour
             ];
 
-            foreach([0, 15, 30, 45] as $min) {
+            foreach(['00', '15', '30', '45'] as $min) {
                 $file = C::Storage()->getDataPath() . DS . 'archive' . DS . 'thumbnails' . DS . $date->toDateString() . DS .
                     $date->isoFormat('YYYY-MM-DD_HH-') . $min . '.jpg';
 
