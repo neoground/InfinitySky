@@ -3,6 +3,7 @@ Description=Runs cron job every minute
 
 [Timer]
 OnCalendar=*-*-* *:*:00
+AccuracySec=1
 Unit=infinitysky-cron.service
 
 [Install]
