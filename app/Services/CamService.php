@@ -231,13 +231,15 @@ class CamService
                 count($files) . "x1",
                 $slice_width . "x" . $slice_height . "+0+0>",
                 \Imagick::MONTAGEMODE_CONCATENATE,
-                "10x10+2+2"
+                "0x0"
             );
 
-            $filename = $keograms_dir . DS . $day_string . '.jpg';
-            $filename_thumbnail = $keograms_dir . DS . $day_string . '_thumbnail.jpg';
+            $filename = C::Storage()->getDataPath() . DS . 'keograms' . DS . $day_string . '.jpg';
+            $filename_thumbnail = C::Storage()->getDataPath() . DS . 'keograms' . DS . 'thumbnails'
+                . DS . $day_string . '_thumbnail.jpg';
 
             C::Storage()->deleteFileIfExists($filename);
+            C::Storage()->createDirectoriesIfNotExisting(dirname($filename_thumbnail));
 
             $montage->setImageFormat('jpg');
             $montage->writeImage($filename);

@@ -20,10 +20,10 @@ camera:
   # Crop the image to these coordinates
   # (top left X, top left Y, bottom right X, bottom right Y)
   crop:
-    top_left_x: 229,
-    top_left_y: 397
-    bottom_right_x: 2464
-    bottom_right_y: 2632
+    top_left_x: 414
+    top_left_y: 430
+    bottom_right_x: 2414
+    bottom_right_y: 2430
   # Exposure in ms (or auto) and gain (similar to ISO: gain 4 -> ISO 400)
   # Separate for each mode: day, twilight, night
   capture:
