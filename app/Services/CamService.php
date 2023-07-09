@@ -216,10 +216,7 @@ class CamService
             // Build final keogram image
             $draw = new \ImagickDraw();
             $draw->setStrokeColor('black');
-            $draw->setFillColor('white');
-
-            $draw->setStrokeWidth(0);
-            $draw->setFontSize(24);
+            $draw->setFillColor('black');
 
             $slice_width = C::Config()->get('camera:keogram.slice_width');
             $slice_height = C::Config()->get('camera:keogram.slice_height');
@@ -228,10 +225,10 @@ class CamService
 
             $montage = $imagick->montageImage(
                 $draw,
-                count($files) . "x1",
-                $slice_width . "x" . $slice_height . "+0+0>",
+                count($files) . "x1+0+0",
+                $slice_width . "x" . $slice_height . "+0+0",
                 \Imagick::MONTAGEMODE_CONCATENATE,
-                "0x0"
+                "0x0+0+0"
             );
 
             $filename = C::Storage()->getDataPath() . DS . 'keograms' . DS . $day_string . '.jpg';
