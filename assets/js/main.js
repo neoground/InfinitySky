@@ -3,7 +3,7 @@
 // Image lightbox
 const modal = document.getElementById('imageModal')
 const modalImage = document.getElementById('modalImage')
-const imageLinks = Array.from(document.querySelectorAll('[data-bs-toggle="modal"][data-bs-target="#imageModal"]'))
+const imageLinks = Array.from(document.getElementsByClassName('gallery'))
 let currentIndex = 0
 
 const handleArrowKeys = event => {

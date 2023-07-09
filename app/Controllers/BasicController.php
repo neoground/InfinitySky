@@ -47,13 +47,29 @@ class BasicController extends Controller
 
         // Get images of the last 24 hours (every 15 mins)
         $hours = [];
+
+        $mins = [
+            '00',
+            '05',
+            '10',
+            '15',
+            '20',
+            '25',
+            '30',
+            '35',
+            '40',
+            '45',
+            '50',
+            '55',
+        ];
+
         $date = Carbon::now()->startOfHour();
         while($date->diffInHours(Carbon::now()) < 24) {
             $hour = [
-                'hour' => $date->hour
+                'hour' => $date->hour,
             ];
 
-            foreach(['00', '15', '30', '45'] as $min) {
+            foreach($mins as $min) {
                 $file = C::Storage()->getDataPath() . DS . 'archive' . DS . 'thumbnails' . DS . $date->toDateString() . DS .
                     $date->isoFormat('YYYY-MM-DD_HH-') . $min . '.jpg';
 
@@ -80,7 +96,8 @@ class BasicController extends Controller
             'current_data' => $current_data,
             'sun' => $sun,
             'hours' => $hours,
-            'minutes' => ['00', '15', '30', '45']
+            'minutes' => ['00', '15', '30', '45'],
+            'all_minutes' => $mins,
         ]);
     }
 
