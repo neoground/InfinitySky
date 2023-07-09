@@ -63,6 +63,7 @@ class CamService
 
         // Create thumbnail for archived image
         $output->writeln('Creating thumbnail...');
+        C::Storage()->createDirectoriesIfNotExisting($thumbnails_dir);
         $thumbnail = new SimpleImage();
         $thumbnail->fromFile($archive_dir . DS . $filename)
             ->thumbnail(400, 400)
