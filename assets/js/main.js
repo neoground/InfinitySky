@@ -1,11 +1,31 @@
 // Main JS file
 
 // Image lightbox
-let modal = document.getElementById('imageModal')
-let modalImage = document.getElementById('modalImage')
+const modal = document.getElementById('imageModal')
+const modalImage = document.getElementById('modalImage')
+const imageLinks = Array.from(document.querySelectorAll('[data-bs-toggle="modal"][data-bs-target="#imageModal"]'))
+let currentIndex = 0
 
-modal.addEventListener('show.bs.modal', function (event) {
-    let imageLink = event.relatedTarget
-    let src = imageLink.getAttribute('href')
+const handleArrowKeys = event => {
+    if (event.key === 'ArrowRight') {
+        currentIndex = (currentIndex + 1) % imageLinks.length
+    } else if (event.key === 'ArrowLeft') {
+        currentIndex = (currentIndex - 1 + imageLinks.length) % imageLinks.length
+    } else {
+        return
+    }
+    const newSrc = imageLinks[currentIndex].getAttribute('href')
+    modalImage.setAttribute('src', newSrc)
+}
+
+modal.addEventListener('show.bs.modal', event => {
+    const imageLink = event.relatedTarget
+    const src = imageLink.getAttribute('href')
     modalImage.setAttribute('src', src)
+    currentIndex = imageLinks.indexOf(imageLink)
+    document.addEventListener('keyup', handleArrowKeys)
+})
+
+modal.addEventListener('hide.bs.modal', () => {
+    document.removeEventListener('keyup', handleArrowKeys)
 })

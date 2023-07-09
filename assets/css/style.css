@@ -41,7 +41,3 @@
     align-items: center;
     justify-content: center;
 }
-
-#imageModal .modal-content {
-    background-color: inherit;
-}

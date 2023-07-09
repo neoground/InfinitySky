@@ -13,7 +13,7 @@
     <section id="hero" class="mb-5">
         <div class="container">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6">
+                <div class="col-10 col-sm-8 col-lg-6 text-center">
                     <a href="{{ current_file }}" data-bs-toggle="modal" data-bs-target="#imageModal">
                         <img class="d-block mx-lg-auto img-fluid shadow-lg rounded mt-4" src="{{ current_file }}" alt="Latest photo" />
                     </a>
@@ -76,9 +76,9 @@
 
                         <div class="col-6 offset-3 opacity-75 mb-3">
                             {% if getConfig('camera:enabled') %}
-                                <div class="alert alert-success">Camera is working</div>
+                                <div class="alert alert-success">✅ Camera is working</div>
                             {% else %}
-                                <div class="alert alert-warning">Camera is disabled!</div>
+                                <div class="alert alert-warning">🛑 Camera is disabled!</div>
                             {% endif %}
                         </div>
 
@@ -98,7 +98,7 @@
                 </div>
 
                 {% for m in minutes %}
-                <div class="col-3 col-lg-2 mb-3 text-center">
+                <div class="col-6 col-md-3 col-lg-2 mb-3 text-center">
                     {% if hour['min_' ~ m] %}
                         <div class="card">
                             <a href="{{ hour['min_' ~ m ~ '_full'] }}"
