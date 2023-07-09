@@ -55,7 +55,7 @@ class BasicController extends Controller
 
             foreach([0, 15, 30, 45] as $min) {
                 $file = C::Storage()->getDataPath() . DS . 'archive' . DS . 'thumbnails' . DS . $date->toDateString() . DS .
-                    $date->isoFormat('YYYY-MM-DD_HH-mm') . '.jpg';
+                    $date->isoFormat('YYYY-MM-DD_HH-') . $min . '.jpg';
 
                 if(file_exists($file)) {
                     $hour['min_' . $min] = C::Storage()->pathToUrl($file);
@@ -75,6 +75,7 @@ class BasicController extends Controller
 
         return View::make('index')->with([
             'title' => 'Index',
+            'nav_active' => 'home',
             'current_file' => C::Storage()->pathToUrl($current_file),
             'current_data' => $current_data,
             'sun' => $sun,

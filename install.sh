@@ -78,6 +78,7 @@ cd /opt/infinitysky/www
 mkdir data var/cache var/logs
 /usr/local/bin/composer install
 echo "Local" > app/app.env
+mkdir -p app/Config/Environments/Local
 
 # Adjust permissions
 chown -R www-data:www-data /opt/infinitysky

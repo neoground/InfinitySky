@@ -27,52 +27,61 @@
                     <h1 class="display-5 fw-bold lh-1 mb-5">InfinitySky Today</h1>
 
                     <div class="row">
-                    {% if sun %}
-                        {% if sun.nautical_twilight_begin %}
-                            <div class="col-6 mb-4">
-                                <div class="h4">{{ sun.nautical_twilight_begin.isoformat('HH:mm') }}</div>
-                                <div class="h6">Nautical Twilight</div>
-                            </div>
-                        {% endif %}
-                        {% if sun.civil_twilight_begin %}
-                            <div class="col-6 mb-4">
-                                <div class="h4">{{ sun.civil_twilight_begin.isoformat('HH:mm') }}</div>
-                                <div class="h6">Civil Twilight</div>
-                            </div>
+                        {% if sun %}
+                            {% if sun.nautical_twilight_begin %}
+                                <div class="col-6 mb-4">
+                                    <div class="h4">{{ sun.nautical_twilight_begin.isoformat('HH:mm') }}</div>
+                                    <div class="h6">Nautical Twilight</div>
+                                </div>
+                            {% endif %}
+                            {% if sun.civil_twilight_begin %}
+                                <div class="col-6 mb-4">
+                                    <div class="h4">{{ sun.civil_twilight_begin.isoformat('HH:mm') }}</div>
+                                    <div class="h6">Civil Twilight</div>
+                                </div>
+                            {% endif %}
+
+                            {% if sun.sunrise %}
+                                <div class="col-4 mb-4">
+                                    <div class="h4">{{ sun.sunrise.isoformat('HH:mm') }}</div>
+                                    <div class="h6">Sunrise</div>
+                                </div>
+                            {% endif %}
+                            {% if sun.transit %}
+                                <div class="col-4 mb-4">
+                                    <div class="h4">{{ sun.transit.isoformat('HH:mm') }}</div>
+                                    <div class="h6">Transit</div>
+                                </div>
+                            {% endif %}
+                            {% if sun.sunset %}
+                                <div class="col-4 mb-4">
+                                    <div class="h4">{{ sun.sunset.isoformat('HH:mm') }}</div>
+                                    <div class="h6">Sunset</div>
+                                </div>
+                            {% endif %}
+
+                            {% if sun.civil_twilight_end %}
+                                <div class="col-6 mb-4">
+                                    <div class="h4">{{ sun.civil_twilight_end.isoformat('HH:mm') }}</div>
+                                    <div class="h6">Civil Twilight</div>
+                                </div>
+                            {% endif %}
+                            {% if sun.nautical_twilight_end %}
+                                <div class="col-6 mb-4">
+                                    <div class="h4">{{ sun.nautical_twilight_end.isoformat('HH:mm') }}</div>
+                                    <div class="h6">Nautical Twilight</div>
+                                </div>
+                            {% endif %}
                         {% endif %}
 
-                        {% if sun.sunrise %}
-                            <div class="col-4 mb-4">
-                                <div class="h4">{{ sun.sunrise.isoformat('HH:mm') }}</div>
-                                <div class="h6">Sunrise</div>
-                            </div>
-                        {% endif %}
-                        {% if sun.transit %}
-                            <div class="col-4 mb-4">
-                                <div class="h4">{{ sun.transit.isoformat('HH:mm') }}</div>
-                                <div class="h6">Transit</div>
-                            </div>
-                        {% endif %}
-                        {% if sun.sunset %}
-                            <div class="col-4 mb-4">
-                                <div class="h4">{{ sun.sunset.isoformat('HH:mm') }}</div>
-                                <div class="h6">Sunset</div>
-                            </div>
-                        {% endif %}
+                        <div class="col-6 mb-3">
+                            {% if getConfig('camera:enabled') %}
+                                <div class="alert alert-success">Camera is working</div>
+                            {% else %}
+                                <div class="alert alert-warning">Camera is disabled!</div>
+                            {% endif %}
+                        </div>
 
-                        {% if sun.civil_twilight_end %}
-                            <div class="col-6 mb-4">
-                                <div class="h4">{{ sun.civil_twilight_end.isoformat('HH:mm') }}</div>
-                                <div class="h6">Civil Twilight</div>
-                            </div>
-                        {% endif %}
-                        {% if sun.nautical_twilight_end %}
-                            <div class="col-6 mb-4">
-                                <div class="h4">{{ sun.nautical_twilight_end.isoformat('HH:mm') }}</div>
-                                <div class="h6">Nautical Twilight</div>
-                            </div>
-                        {% endif %}
-                    {% endif %}
                     </div>
 
                 </div>
@@ -81,16 +90,11 @@
     </section>
 
     <div class="container">
-        {% if getConfig('camera:enabled') %}
-            <div class="alert alert-success">Camera is working.</div>
-        {% else %}
-            <div class="alert alert-warning">Camera is disabled!</div>
-        {% endif %}
-
+        <h3 class="h3 fw-bold">The last 24 hours</h3>
         {% for hour in hours %}
-            <div class="row mb-3">
-                <div class="col-12 col-lg-2 mb-3 text-center">
-                    <div class="h2">{{ hour.hour }}</div>
+            <div class="row my-4">
+                <div class="col-12 col-lg-2 mb-3 d-flex justify-content-center align-items-center">
+                    <div class="display-3">{{ hour.hour }}</div>
                 </div>
 
                 {% for m in minutes %}
@@ -100,7 +104,7 @@
                             <a href="{{ hour['min_' ~ m ~ '_full'] }}" class="gallery">
                                 <img src="{{ hour['min_' ~ m] }}" class="card-img-top" alt="Photo" />
                             </a>
-                            <div class="card-body text-center">
+                            <div class="card-body text-center p-2">
                                 {{ hour.hour }}:{{ m }}
                             </div>
                         </div>
@@ -108,7 +112,7 @@
                 </div>
                 {% endfor %}
 
-                <div class="col-12 col-lg-2 mb-3 text-center">
+                <div class="col-12 col-lg-2 mb-3 text-center d-flex justify-content-center align-items-center">
                     Details
                 </div>
             </div>
