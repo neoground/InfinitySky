@@ -32,6 +32,7 @@ class BasicController extends Controller
             ];
         }
 
+        // Get sun info
         $lat = C::Config()->get('camera:location.lat');
         $lon = C::Config()->get('camera:location.lon');
 
@@ -44,11 +45,41 @@ class BasicController extends Controller
             $sun[$k] = Carbon::createFromTimestamp($v);
         }
 
+        // Get images of the last 24 hours (every 15 mins)
+        $hours = [];
+        $date = Carbon::now()->startOfHour();
+        while($date->diffInHours(Carbon::now()) < 24) {
+            $hour = [
+                'hour' => $date->hour
+            ];
+
+            foreach([0, 15, 30, 45] as $min) {
+                $file = C::Storage()->getDataPath() . DS . 'archive' . DS . 'thumbnails' . DS . $date->toDateString() . DS .
+                    $date->isoFormat('YYYY-MM-DD_HH-mm') . '.jpg';
+
+                if(file_exists($file)) {
+                    $hour['min_' . $min] = C::Storage()->pathToUrl($file);
+                    $hour['min_' . $min . '_full'] = C::Storage()->pathToUrl(
+                        str_replace(DS . 'thumbnails', '', $file));
+                }
+
+            }
+
+            // Only add if we got at least one image
+            if(count($hour) > 1) {
+                $hours[] = $hour;
+            }
+
+            $date->subHour();
+        }
+
         return View::make('index')->with([
             'title' => 'Index',
             'current_file' => C::Storage()->pathToUrl($current_file),
             'current_data' => $current_data,
-            'sun' => $sun
+            'sun' => $sun,
+            'hours' => $hours,
+            'minutes' => ['00', '15', '30', '45']
         ]);
     }
 
