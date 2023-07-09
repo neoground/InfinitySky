@@ -120,22 +120,12 @@ Add the nginx config of InfinitySky to your main nginx config (typically in `/et
 server {
    ...
    include /opt/infinitysky/nginx.conf;
-   
-   # If you haven't configured nginx for PHP yet, you may also need to add this:
-   location / {
-       try_files $uri $uri/ /index.php$is_args$args;
-   }
-   location ~ \.php$ {
-        try_files $uri =404;
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
-        fastcgi_index index.php;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_read_timeout 30;
-        include fastcgi_params;
-   }
 }
 ```
+
+The config expects the php-fpm socket to be available at `/run/php/php-fpm.sock`, which should be the case
+with default configuration. If you have a custom setup, feel free to copy the `/opt/infinitysky/nginx.conf`,
+link the nginx config to this copy and adjust the values as needed.
 
 ### Step 5: Configure InfinitySky
 
