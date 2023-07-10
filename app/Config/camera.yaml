@@ -17,13 +17,13 @@ camera:
   rotate: 270
   sharpness: 4.2
   saturation: 1.1
-  # Crop the image to these coordinates
-  # (top left X, top left Y, bottom right X, bottom right Y)
+  # Crop the image to these coordinates (px)
+  # (count from top left after rotation)
   crop:
-    top_left_x: 414
-    top_left_y: 430
-    bottom_right_x: 2414
-    bottom_right_y: 2430
+    top_left_x: 14
+    top_left_y: 475
+    bottom_right_x: 2164
+    bottom_right_y: 2625
   # Exposure in ms (or auto) and gain (similar to ISO: gain 4 -> ISO 400)
   # Separate for each mode: day, twilight, night
   capture:
