@@ -32,7 +32,7 @@ camera:
       gain: 1
     twilight:
       exposure: auto
-      gain: 2
+      gain: 1
     night:
       exposure: 6000
       gain: 5

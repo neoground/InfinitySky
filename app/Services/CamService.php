@@ -84,18 +84,26 @@ class CamService
         $mode = $this->getMode();
 
         // Default: day
-        $exposure = 'auto';
-        $gain = 1;
+        $exposure = C::Config()->get('camera:camera.capture.day.exposure');
+        $gain = C::Config()->get('camera:camera.capture.day.gain');
+
         $timeout = 5000;
+        if(is_numeric($exposure)) {
+            $timeout = $exposure;
+        }
 
         if($mode == 'twilight') {
             $exposure = C::Config()->get('camera:camera.capture.twilight.exposure');
             $gain = C::Config()->get('camera:camera.capture.twilight.gain');
-            $timeout = $exposure;
+            if(is_numeric($exposure)) {
+                $timeout = $exposure;
+            }
         } elseif($mode == 'night') {
             $exposure = C::Config()->get('camera:camera.capture.night.exposure');
             $gain = C::Config()->get('camera:camera.capture.night.gain');
-            $timeout = $exposure;
+            if(is_numeric($exposure)) {
+                $timeout = $exposure;
+            }
         }
 
         C::Storage()->deleteFileIfExists($file);
