@@ -89,10 +89,16 @@ class BasicController extends Controller
             $date->subHour();
         }
 
+        $curfile = false;
+        if(!empty($current_data)) {
+            $curfile = C::Storage()->pathToUrl($current_file) . '?v=' .
+                $current_data['modified_at']->isoFormat('YYYY-MM-DD_HH-mm');
+        }
+
         return View::make('index')->with([
             'title' => 'Index',
             'nav_active' => 'home',
-            'current_file' => C::Storage()->pathToUrl($current_file),
+            'current_file' => $curfile,
             'current_data' => $current_data,
             'sun' => $sun,
             'hours' => $hours,

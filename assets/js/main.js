@@ -22,8 +22,12 @@ modal.addEventListener('show.bs.modal', event => {
     const imageLink = event.relatedTarget
     const src = imageLink.getAttribute('href')
     modalImage.setAttribute('src', src)
-    currentIndex = imageLinks.indexOf(imageLink)
-    document.addEventListener('keyup', handleArrowKeys)
+
+    // Key functionality only for gallery links
+    if(imageLink.classList.contains('gallery')) {
+        currentIndex = imageLinks.indexOf(imageLink)
+        document.addEventListener('keyup', handleArrowKeys)
+    }
 })
 
 modal.addEventListener('hide.bs.modal', () => {

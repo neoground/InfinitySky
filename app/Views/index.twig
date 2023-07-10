@@ -101,7 +101,7 @@
                 <div class="col-6 col-md-3 col-lg-2 mb-3 text-center">
                     {% if hour['min_' ~ m] %}
                         <div class="card">
-                            <a href="{{ hour['min_' ~ m ~ '_full'] }}"
+                            <a href="{{ hour['min_' ~ m ~ '_full'] }}" class="gallery"
                                data-bs-toggle="modal" data-bs-target="#imageModal">
                                 <img src="{{ hour['min_' ~ m] }}" class="card-img-top" alt="Photo"
                                      loading="lazy" />
@@ -127,7 +127,7 @@
                             <div class="col-6 col-md-3 col-lg-2 col-xl-1">
                                 {% if hour['min_' ~ m] %}
                                     <div class="card">
-                                        <a href="{{ hour['min_' ~ m ~ '_full'] }}" class="gallery"
+                                        <a href="{{ hour['min_' ~ m ~ '_full'] }}"
                                            data-bs-toggle="modal" data-bs-target="#imageModal">
                                             <img src="{{ hour['min_' ~ m] }}" class="card-img-top" alt="Photo"
                                                  loading="lazy" />
