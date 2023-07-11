@@ -25,14 +25,18 @@ camera:
     bottom_right_x: 2164
     bottom_right_y: 2625
   # Exposure in ms (or auto) and gain (similar to ISO: gain 4 -> ISO 400)
+  # Optional offset in minutes to adjust the time. An offset of 20 mins at twilight
+  # would move the twilight begin at sunrise 20 mins earlier, at sunset 20 mins later
   # Separate for each mode: day, twilight, night
   capture:
     day:
       exposure: auto
       gain: 1
+      offset: 0
     twilight:
       exposure: auto
-      gain: 1
+      gain: 4
+      offset: 20
     night:
       exposure: 6000
       gain: 5
@@ -46,4 +50,4 @@ timelapse:
 # Keogram configuration
 keogram:
   slice_width: 4
-  slice_height: 900
+  slice_height: 800

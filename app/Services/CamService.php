@@ -154,12 +154,16 @@ class CamService
             $sun[$k] = Carbon::createFromTimestamp($v);
         }
 
-        if($now->lt($sun['civil_twilight_begin']) || $now->gt($sun['civil_twilight_end'])) {
+        $offset = C::Config()->get('camera:camera.capture.twilight.offset', 0);
+        if($now->lt($sun['civil_twilight_begin']->subMinutes($offset))
+            || $now->gt($sun['civil_twilight_end']->addMinutes($offset))) {
             // Before dawn beginning or after dawn end (102°)
             return 'night';
         }
 
-        if($now->lt($sun['sunrise']) || $now->gt($sun['sunset'])) {
+        $offset = C::Config()->get('camera:camera.capture.day.offset', 0);
+        if($now->lt($sun['sunrise']->subMinutes($offset))
+            || $now->gt($sun['sunset']->addMinutes($offset))) {
             // Before close to sunrise or a bit after sunset (96°)
             return 'twilight';
         }
