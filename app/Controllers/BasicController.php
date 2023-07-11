@@ -107,11 +107,21 @@ class BasicController extends Controller
         ]);
     }
 
-    #[Route("GET", "/backend", "restricted", "auth")]
-    public function getRestricted() : View
+    #[Route("GET", "/yesterday", "yesterday")]
+    public function getYesterday() : View
     {
-        return View::make('backend.index')->with([
+        return View::make('yesterday')->with([
+            'title' => 'Yesterday',
+            'nav_active' => 'yesterday',
+        ]);
+    }
 
+    #[Route("GET", "/archive", "archive")]
+    public function getArchive() : View
+    {
+        return View::make('archive')->with([
+            'title' => 'Archive',
+            'nav_active' => 'archive',
         ]);
     }
 

@@ -1,15 +1,12 @@
 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
     <li class="nav-item">
-        <a class="nav-link {% if nav_active == 'home' %}active{% endif %}" href="{{ getUrl('index') }}">Home</a>
+        <a class="nav-link {% if nav_active == 'home' %}active{% endif %}" href="{{ getUrl('index') }}">Today</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Archive</a>
+        <a class="nav-link {% if nav_active == 'yesterday' %}active{% endif %}" href="{{ getUrl('yesterday') }}">Yesterday</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Keograms</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Timelapses</a>
+        <a class="nav-link {% if nav_active == 'archive' %}active{% endif %}" href="{{ getUrl('archive') }}">Archive</a>
     </li>
     {# <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
