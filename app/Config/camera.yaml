@@ -43,7 +43,7 @@ camera:
 
 # Timelapse configuration
 timelapse:
-  framerate: 25
+  framerate: 24
   width: 1080
   height: 1080
 

@@ -18,7 +18,7 @@
                     {% if timelapse_url %}
                         <video width="{{ getConfig('camera:timelapse.width') }}"
                                height="{{ getConfig('camera:timelapse.height') }}"
-                               class="img-fluid"
+                               class="img-fluid rounded"
                                controls muted
                                {% if getConfig('user:archive.video_loop') %}loop{% endif %}
                                {% if getConfig('user:archive.video_autoplay') %}autoplay{% endif %}>
@@ -91,7 +91,8 @@
                 <div class="col-12 text-center">
                     <a href="{{ keogram_url }}" class="gallery"
                        data-bs-toggle="modal" data-bs-target="#imageModal">
-                        <img src="{{ keogram_url }}" class="w-100" height="500px" alt="Keogram" />
+                        <img src="{{ keogram_url }}" class="w-100 rounded"
+                             height="{{ getConfig('user:archive.keogram_height') }}" alt="Keogram" />
                     </a>
                 </div>
             </div>
