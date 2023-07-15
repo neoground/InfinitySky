@@ -17,4 +17,21 @@
 # |                                                                         |
 # +-------------------------------------------------------------------------+
 
+# Today area
+today:
+  show_cam_status: true
 
+# Archive area
+archive:
+  # Thumbnail to show in overview
+  # The first existing file in this list will be used as the thumbnail
+  # Time in HH-MM structure
+  thumbnail:
+    - 12-00
+    - 16-00
+    - 18-00
+    - 20-00
+    - 09-00
+  # Timelapse video appearance
+  video_loop: true
+  video_autoplay: true

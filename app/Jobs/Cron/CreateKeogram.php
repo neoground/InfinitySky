@@ -26,7 +26,7 @@ class CreateKeogram extends Cronjob
     protected function configure()
     {
         $this->setName('CreateKeogram')
-            ->runDaily(0, 12);
+            ->runDaily(0, 6);
     }
 
     /**

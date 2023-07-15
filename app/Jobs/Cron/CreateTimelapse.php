@@ -26,7 +26,7 @@ class CreateTimelapse extends Cronjob
     protected function configure()
     {
         $this->setName('CreateTimelapse')
-            ->runDaily(0, 17);
+            ->runDaily(0, 12);
     }
 
     /**

@@ -56,7 +56,7 @@ local:
   # Timestamps for displaying
   # Format: https://momentjs.com/docs/#/displaying/format/
   timestamps:
-    date:          'DD MMMM YYYY'
+    date:          'ddd, DD MMMM YYYY'
     dateshort:     'DD MMM YY'
     datetimeshort: 'DD MMM YYYY HH:mm'
   # Text formatting of numbers

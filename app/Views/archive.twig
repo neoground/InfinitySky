@@ -1,0 +1,46 @@
+{% extends "_base/site.twig" %}
+
+{% block css %}
+    <style>
+        #hero {
+            background: url('{{ getAssetsUrl() }}/images/archive_bg_blur.jpg') center center no-repeat;
+            background-size: cover;
+            min-height: 25vh;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <section id="hero" class="mb-5 d-flex align-items-center">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="display-4 fw-bold lh-1">Archive</h1>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            {% for d in data %}
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="card">
+                        {% if d.cover_photo %}
+                        <img class="card-img-top"
+                             src="{{ d.cover_photo }}"
+                             alt="Photo" />
+                        {% endif %}
+                        {% if d.keogram_thumbnail_url %}
+                            <img class="img-fluid mt-3" src="{{ d.keogram_thumbnail_url }}" alt="Keogram" />
+                        {% endif %}
+                        <div class="card-body text-center">
+                            <h4 class="h4 my-0">{{ formatDate(d.date) }}</h4>
+                        </div>
+
+                        <a href="{{ getUrl('day', d.date) }}" class="stretched-link"
+                           title="Go to {{ formatDate(d.date) }}"></a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

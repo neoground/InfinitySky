@@ -3,7 +3,7 @@
 {% block css %}
     <style>
         #hero {
-            background: url('{{ getAssetsUrl() }}/images/hero_bg_blur.jpg') center center no-repeat;
+            background: url('{{ getAssetsUrl() }}/images/day_bg_blur.jpg') center center no-repeat;
             background-size: cover;
         }
     </style>
@@ -14,17 +14,21 @@
         <div class="container">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6 text-center">
-                    <a href="{{ current_file }}" data-bs-toggle="modal" data-bs-target="#imageModal">
-                        <img class="d-block mx-lg-auto img-fluid shadow-lg rounded mt-4" src="{{ current_file }}" alt="Latest photo" />
-                    </a>
-                    {% if current_data %}
-                        <div class="opacity-75 w-100 text-center my-3">
-                            {{ formatDateTimeShort(current_data.modified_at) }} &bull; {{ formatDateDiff(current_data.modified_at) }}
-                        </div>
+
+                    {% if timelapse_url %}
+                        <video width="{{ getConfig('camera:timelapse.width') }}"
+                               height="{{ getConfig('camera:timelapse.height') }}"
+                               class="img-fluid"
+                               controls muted
+                               {% if getConfig('user:archive.video_loop') %}loop{% endif %}
+                               {% if getConfig('user:archive.video_autoplay') %}autoplay{% endif %}>
+                            <source src="{{ timelapse_url }}" type="video/mp4">
+                        </video>
                     {% endif %}
+
                 </div>
                 <div class="col-lg-6 text-center">
-                    <h1 class="display-5 fw-bold lh-1 mb-5">Today</h1>
+                    <h1 class="display-5 fw-bold lh-1 mb-5">{{ formatDate(date) }}</h1>
 
                     <div class="row">
                         {% if sun %}
@@ -74,16 +78,6 @@
                             {% endif %}
                         {% endif %}
 
-                        {% if getConfig('user:today.show_cam_status') %}
-                        <div class="col-6 offset-3 opacity-75 mb-3">
-                            {% if getConfig('camera:enabled') %}
-                                <div class="alert alert-success">✅ Camera is active</div>
-                            {% else %}
-                                <div class="alert alert-warning">🛑 Camera is disabled!</div>
-                            {% endif %}
-                        </div>
-                        {% endif %}
-
                     </div>
 
                 </div>
@@ -92,7 +86,17 @@
     </section>
 
     <div class="container">
-        <h2 class="h1 fw-bold text-center mb-5">The last 24 hours</h2>
+        {% if keogram_url %}
+            <div class="row my-3">
+                <div class="col-12 text-center">
+                    <a href="{{ keogram_url }}" class="gallery"
+                       data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <img src="{{ keogram_url }}" class="w-100" height="500px" alt="Keogram" />
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+
         {% for hour in hours %}
             <div class="row my-3">
                 <div class="col-12 col-lg-2 mb-3 d-flex justify-content-center align-items-center">
@@ -100,20 +104,20 @@
                 </div>
 
                 {% for m in minutes %}
-                <div class="col-6 col-md-3 col-lg-2 mb-3 text-center">
-                    {% if hour['min_' ~ m] %}
-                        <div class="card">
-                            <a href="{{ hour['min_' ~ m ~ '_full'] }}" class="gallery"
-                               data-bs-toggle="modal" data-bs-target="#imageModal">
-                                <img src="{{ hour['min_' ~ m] }}" class="card-img-top" alt="Photo"
-                                     loading="lazy" />
-                            </a>
-                            <div class="card-body text-center p-2">
-                                {{ hour.hour }}:{{ m }}
+                    <div class="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                        {% if hour['min_' ~ m] %}
+                            <div class="card">
+                                <a href="{{ hour['min_' ~ m ~ '_full'] }}" class="gallery"
+                                   data-bs-toggle="modal" data-bs-target="#imageModal">
+                                    <img src="{{ hour['min_' ~ m] }}" class="card-img-top" alt="Photo"
+                                         loading="lazy" />
+                                </a>
+                                <div class="card-body text-center p-2">
+                                    {{ hour.hour }}:{{ m }}
+                                </div>
                             </div>
-                        </div>
-                    {% endif %}
-                </div>
+                        {% endif %}
+                    </div>
                 {% endfor %}
 
                 <div class="col-12 col-lg-2 mb-3 text-center d-flex justify-content-center align-items-center">
