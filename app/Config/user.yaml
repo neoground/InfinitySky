@@ -38,10 +38,10 @@ cleanup:
   # All values are amount of days, so 60 = 60 days
   # Keep all photos this long
   # Only single photos of each 15 minutes will be kept after that
-  keep_full_archive: 14
+  keep_full_archive: 30
   # Reduce the archived photos to hourly only (so minute 0) after that
   # Must be higher than keep_full_archive
-  keep_reduced_archive: 28
+  keep_reduced_archive: 60
   # Keep keogram slices (where keograms are built from)
   keep_keogram_slices: 7
   # Keep keogram images
