@@ -169,17 +169,42 @@ class BasicController extends Controller
         $timelapse_file = C::Storage()->getDataPath() . DS . 'timelapses' . DS . $cdate->toDateString() . '.mp4';
         $keogram_file = C::Storage()->getDataPath() . DS . 'keograms' . DS . $cdate->toDateString() . '.jpg';
 
+        $mode = $this->getDayMode($date);
+
+        $overview_mins = ['00', '15', '30', '45'];
+        if($mode == 'hourly') {
+            $overview_mins = ['00'];
+        }
+
         return View::make('day')->with([
             'title' => C::Formatter()->formatDate($date) . ' | Archive',
             'nav_active' => $cdate->isYesterday() ? 'yesterday' : 'archive',
             'sun' => $sun,
             'hours' => $hours,
-            'minutes' => ['00', '15', '30', '45'],
+            'minutes' => $overview_mins,
             'all_minutes' => $mins,
             'timelapse_url' => (file_exists($timelapse_file)) ? C::Storage()->pathToUrl($timelapse_file) : false,
             'keogram_url' => (file_exists($keogram_file)) ? C::Storage()->pathToUrl($keogram_file) : false,
-            'date' => $cdate
+            'date' => $cdate,
+            'mode' => $mode
         ]);
+    }
+
+    private function getDayMode(Carbon $date): string
+    {
+        // Detect if this day still has all images / hourly only and so on...
+        $days = C::Config()->get('user:cleanup.keep_full_archive', 14);
+        if($date->lte(Carbon::now()->subDays($days)->startOfDay())) {
+
+            $days = C::Config()->get('user:cleanup.keep_reduced_archive', 28);
+            if($date->lte(Carbon::now()->subDays($days)->startOfDay())) {
+                return 'hourly';
+            }
+
+            return 'quarterly';
+        }
+
+        return 'full';
     }
 
     #[Route("GET", "/archive", "archive")]
