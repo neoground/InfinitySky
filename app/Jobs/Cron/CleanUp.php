@@ -67,7 +67,7 @@ class CleanUp extends Cronjob
 
         foreach(C::Storage()->scanDir($basedir) as $file) {
             if(is_dir($basedir . DS . $file)) {
-                $this->cleanUpArchiveImages($basedir . DS . $file, $oldest_date, ['00']);
+                $this->cleanUpArchiveImages($basedir . DS . $file, $oldest_date, ['-00']);
             }
         }
     }
