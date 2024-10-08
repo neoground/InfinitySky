@@ -43,7 +43,7 @@ cleanup:
   # Must be higher than keep_full_archive
   keep_reduced_archive: 60
   # Keep keogram slices (where keograms are built from)
-  keep_keogram_slices: 7
+  keep_keogram_slices: 4
   # Keep keogram images
   keep_keogram: 90
   # Keep timelapse videos
