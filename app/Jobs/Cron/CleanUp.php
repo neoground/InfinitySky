@@ -51,10 +51,15 @@ class CleanUp extends Cronjob
         $days = C::Config()->get('user:cleanup.keep_full_archive', 14);
         $oldest_date = Carbon::now()->subDays($days)->startOfDay();
         $basedir = C::Storage()->getDataPath() . DS . 'archive';
+        $thumbnails_basedir = C::Storage()->getDataPath() . DS . 'archive' . DS . 'thumbnails';
 
         foreach(C::Storage()->scanDir($basedir) as $file) {
             if(is_dir($basedir . DS . $file)) {
                 $this->cleanUpArchiveImages($basedir . DS . $file, $oldest_date, ['00', '15', '30', '45']);
+
+                if(file_exists($thumbnails_basedir . DS . $file) && is_dir($thumbnails_basedir . DS . $file)) {
+                    $this->cleanUpArchiveImages($thumbnails_basedir . DS . $file, $oldest_date, ['-00']);
+                }
             }
         }
     }
@@ -64,10 +69,15 @@ class CleanUp extends Cronjob
         $days = C::Config()->get('user:cleanup.keep_reduced_archive', 28);
         $oldest_date = Carbon::now()->subDays($days)->startOfDay();
         $basedir = C::Storage()->getDataPath() . DS . 'archive';
+        $thumbnails_basedir = C::Storage()->getDataPath() . DS . 'archive' . DS . 'thumbnails';
 
         foreach(C::Storage()->scanDir($basedir) as $file) {
             if(is_dir($basedir . DS . $file)) {
                 $this->cleanUpArchiveImages($basedir . DS . $file, $oldest_date, ['-00']);
+
+                if(file_exists($thumbnails_basedir . DS . $file) && is_dir($thumbnails_basedir . DS . $file)) {
+                    $this->cleanUpArchiveImages($thumbnails_basedir . DS . $file, $oldest_date, ['-00']);
+                }
             }
         }
     }
@@ -159,7 +169,7 @@ class CleanUp extends Cronjob
 
     private function removeKeogramSlices()
     {
-        $days = C::Config()->get('user:cleanup.keep_keogram_slices', 7);
+        $days = C::Config()->get('user:cleanup.keep_keogram_slices', 4);
         $oldest_date = Carbon::now()->subDays($days)->startOfDay();
         $basedir = C::Storage()->getDataPath() . DS . 'keograms';
 
