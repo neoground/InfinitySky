@@ -5,6 +5,7 @@
   "version": "1.0",
   "require": {
     "php": ">=8.1",
+    "ext-imagick": "*",
     "neoground/charm": "^3.1",
     "symfony/process": "^6.3"
   },
